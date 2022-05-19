@@ -8,3 +8,11 @@ export function mount(parent, child) {
     parent.appendChild(child);
   }
 }
+
+export function applyAttributes(element, attributes) {
+  for (const [key, value] of Object.entries(attributes)) {
+    // 转化属性大小写
+    const keCaseKey = key.replace('/[A-Z]/g', (d) => `-${d.toLocaleLowerCase()}`);
+    element.setAttributes(keCaseKey, value);
+  }
+}
