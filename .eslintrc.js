@@ -7,12 +7,19 @@ module.exports = {
   },
   extends: ['airbnb-base'],
   parserOptions: {
-    ecmaVersion: 'latest',
+    ecmaVersion: 13, // 保持一致
     sourceType: 'module',
   },
   rules: {
-    // https://www.lowerfish.com/2018/08/28/what-is-the-benefit-of-prefer-default-export/
-    // 有利于tree shake 减小文件体积
+    // 关闭 eslint 的如下功能
     'import/prefer-default-export': 0,
+    'no-use-before-define': 0,
+    'no-shadow': 0,
+    'no-restricted-syntax': 0,
+    'no-return-assign': 0,
+    'no-param-reassign': 0,
+    'no-sequences': 0,
+    'no-loop-func': 0,
+    'no-nested-ternary': 0,
   },
 };
