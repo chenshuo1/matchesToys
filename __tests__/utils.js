@@ -7,8 +7,11 @@ export function createDiv() {
 }
 
 export function mount(parent, child) {
-  if (parent) {
+  if (parent && child) {
     parent.appendChild(child);
+  } else {
+    // eslint-disable-next-line no-console
+    console.warn('no parent');
   }
 }
 
