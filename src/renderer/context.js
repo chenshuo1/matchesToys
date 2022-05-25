@@ -1,7 +1,7 @@
 // 上下文主要是保存一些绘制或者其他功能需要的全局信息，比如挂载画布的容器，当前的填充颜色，边框粗细等
 
 // 本次简单实现，只保留画布节点，挂载节点
-import { createSVGElement, mount } from '../utils';
+import { createSVGElement, mount } from '../utils/index';
 
 export function createContext(width, height) {
   // 创建画布svg节点，并设置宽高
