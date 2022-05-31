@@ -1,10 +1,4 @@
-import { applyTransform, createSVGElement, mount } from '../utils/index';
-
-export function transform(type, context, ...params) {
-  // type 是希望的变换种类：scale，translate，rotate 等
-  const { group } = context;
-  applyTransform(group, `${type}(${params.join(', ')})`);
-}
+import { applyTransform, createSVGElement, mount } from '../utils';
 
 export function translate(context, tx, ty) {
   transform('translate', context, tx, ty);
@@ -29,4 +23,9 @@ export function restore(context) {
   const { group } = context;
   const { parentNode } = group;
   context.group = parentNode;
+}
+
+function transform(type, context, ...params) {
+  const { group } = context;
+  applyTransform(group, `${type}(${params.join(', ')})`);
 }

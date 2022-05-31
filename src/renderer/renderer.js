@@ -1,20 +1,23 @@
 import { createContext } from './context';
-import {
-  line, circle, text, rect, path, ring,
-} from './shape';
-import {
-  restore, save, scale, translate, rotate,
-} from './transfrom';
+import { line, circle, text, rect, path } from './shape';
+import { restore, save, scale, translate, rotate } from './transform';
 
-export function createRenderer(width, height) {
-  const context = createContext(width, height); // 创建上下文对象
+export function createRenderer(width, height, {
+  line: drawLine = line,
+  circle: drawCircle = circle,
+  text: drawText = text,
+  rect: drawRect = rect,
+  path: drawPath = path,
+  context: intensifyContext = (d) => d,
+} = {}) {
+  const context = intensifyContext(createContext(width, height));
+
   return {
-    line: (options) => line(context, options),
-    circle: (options) => circle(context, options),
-    text: (options) => text(context, options),
-    rect: (options) => rect(context, options),
-    path: (options) => path(context, options),
-    ring: (options) => ring(context, options),
+    line: (attributes) => drawLine(context, attributes),
+    circle: (attributes) => drawCircle(context, attributes),
+    text: (attributes) => drawText(context, attributes),
+    rect: (attributes) => drawRect(context, attributes),
+    path: (attributes) => drawPath(context, attributes),
     restore: () => restore(context),
     save: () => save(context),
     scale: (...args) => scale(context, ...args),
